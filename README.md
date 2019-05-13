@@ -3,10 +3,6 @@
 Create simple store with behavior subject and track changes 
 with [Redux DevTools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en) 
 
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
 ### Demo
 
 https://stackblitz.com/edit/rx-js-store
