@@ -1,6 +1,6 @@
 {
   "name": "redux-behavior-subject",
-  "version": "1.32.0",
+  "version": "1.33.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -10,9 +10,9 @@
     "type": "git",
      "url": "https://github.com/yoni12ab/redux-behavior-subject.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["store", "redux", "BehaviorSubject"],
+  "author": "Yoni Argovi <yoni12ab@gmail.com>",
+  "license": "MIT",
   "dependencies": {
     "redux": "^4.0.1",
     "redux-devtools-extension": "^2.13.8",
