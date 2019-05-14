@@ -39,7 +39,9 @@ export class ReduxBehaviorSubject<T> extends BehaviorSubject<T> {
   _cloneValue(obj: T) {
     if (obj.constructor == Object) {
       return (<any>Object).assign({}, obj);
-    }
+    } else if (obj.constructor == Array) {
+        return [...(<any>obj)];
+      }
     return obj;
   }
 

@@ -54,6 +54,9 @@ var ReduxBehaviorSubject = /** @class */ (function (_super) {
         if (obj.constructor == Object) {
             return Object.assign({}, obj);
         }
+        else if (obj.constructor == Array) {
+            return obj.slice();
+        }
         return obj;
     };
     ReduxBehaviorSubject.prototype._callerName = function () {
