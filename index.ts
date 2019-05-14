@@ -1,37 +1,35 @@
 import { BehaviorSubject } from "rxjs";
 import { createStore } from "redux";
+import { ReduxBehaviorSubjectOptions } from "./models/redux-behavior-subject.model";
 export const store = createStore(
   (state = {}) => state /* preloadedState, */,
   (<any>window).__REDUX_DEVTOOLS_EXTENSION__ && (<any>window).__REDUX_DEVTOOLS_EXTENSION__()
 );
 export class ReduxBehaviorSubject<T> extends BehaviorSubject<T> {
 
-  public entityName = '';
-  private isDebugMode = false;  
+  private options :ReduxBehaviorSubjectOptions;  
   get localState(): any {
     return store.getState();
   }
 
-  constructor(value: T, entityName: string, isDebugMode = false) {
+  constructor(value: T, options: ReduxBehaviorSubjectOptions) {
     super(value);
-    this.isDebugMode = isDebugMode;
-    this.entityName = entityName;
-    this.localState[this.entityName] = value;
-    store.dispatch({ type: "[${this.entityName}] CREATED" });
+    this.options = options;
+    this.localState[this.options.entityName] = value;
+    this.logAction("CREATED");
   }
 
-  next(value?: T) {
-    if(this.isDebugMode){
-        const updatedBy = this._callerName() || "unknown";
-        
-        store.dispatch({ type: `[${this.entityName}] UPDATED ${updatedBy}` });
+  next(value?: T,action?: string) {
+    if(this.options.isDevMode){
+        const updatedBy = action || this._callerName() || "unknown";
+        this.logAction(`UPDATED ${updatedBy}`);
       }
-      this.localState[this.entityName] = value && this._cloneValue(value);
-    return super.next(this.localState[this.entityName]);
+      this.localState[this.options.entityName] = value && this._cloneValue(value);
+    return super.next(this.localState[this.options.entityName]);
   }
 
   logAction(action: string){
-    return store.dispatch({ type: `[${this.entityName}] ${action}` });
+    return store.dispatch({ type: `[${this.options.entityName}] ${action}` });
   }
 
   

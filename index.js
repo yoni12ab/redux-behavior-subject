@@ -21,15 +21,11 @@ exports.store = redux_1.createStore(function (state) {
 } /* preloadedState, */, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 var ReduxBehaviorSubject = /** @class */ (function (_super) {
     __extends(ReduxBehaviorSubject, _super);
-    function ReduxBehaviorSubject(value, entityName, isDebugMode) {
-        if (isDebugMode === void 0) { isDebugMode = false; }
+    function ReduxBehaviorSubject(value, options) {
         var _this = _super.call(this, value) || this;
-        _this.entityName = '';
-        _this.isDebugMode = false;
-        _this.isDebugMode = isDebugMode;
-        _this.entityName = entityName;
-        _this.localState[_this.entityName] = value;
-        exports.store.dispatch({ type: "[${this.entityName}] CREATED" });
+        _this.options = options;
+        _this.localState[_this.options.entityName] = value;
+        _this.logAction("CREATED");
         return _this;
     }
     Object.defineProperty(ReduxBehaviorSubject.prototype, "localState", {
@@ -39,16 +35,16 @@ var ReduxBehaviorSubject = /** @class */ (function (_super) {
         enumerable: true,
         configurable: true
     });
-    ReduxBehaviorSubject.prototype.next = function (value) {
-        if (this.isDebugMode) {
-            var updatedBy = this._callerName() || "unknown";
-            exports.store.dispatch({ type: "[" + this.entityName + "] UPDATED " + updatedBy });
+    ReduxBehaviorSubject.prototype.next = function (value, action) {
+        if (this.options.isDevMode) {
+            var updatedBy = action || this._callerName() || "unknown";
+            this.logAction("UPDATED " + updatedBy);
         }
-        this.localState[this.entityName] = value && this._cloneValue(value);
-        return _super.prototype.next.call(this, this.localState[this.entityName]);
+        this.localState[this.options.entityName] = value && this._cloneValue(value);
+        return _super.prototype.next.call(this, this.localState[this.options.entityName]);
     };
     ReduxBehaviorSubject.prototype.logAction = function (action) {
-        return exports.store.dispatch({ type: "[" + this.entityName + "] " + action });
+        return exports.store.dispatch({ type: "[" + this.options.entityName + "] " + action });
     };
     ReduxBehaviorSubject.prototype._cloneValue = function (obj) {
         if (obj.constructor == Object) {
