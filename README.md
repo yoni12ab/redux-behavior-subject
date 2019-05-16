@@ -18,19 +18,15 @@ npm i redux-behavior-subject
 Create simple service or any class and use it like a regular rxjs BehaviorSubject 
 for example angular service with simple store
 ```
-import { Injectable, isDevMode } from '@angular/core';
-import {ReduxBehaviorSubject as RBS} from 'redux-behavior-subject';
+import { Injectable } from '@angular/core';
+import {ReduxBehaviorSubject} from 'redux-behavior-subject';
 
 @Injectable()
 export class StoreService {
-  readonly _isDevMode = true;//!!localStorage.getItem('isDevMode');
-  constructor(){
-    console.log('isDevMode', this._isDevMode);
-  }
   private store = {
-      counter$ : new RBS<number>(0,{ entityName : 'counter',isDevMode: this._isDevMode}),
-      toDoList$ : new RBS<Array<any>>([],{ entityName : 'toDoList',isDevMode: this._isDevMode }),
-      clock$ : new RBS<object>(null,{ entityName : 'clock',isDevMode: this._isDevMode }),
+      counter$ : new ReduxBehaviorSubject<number>(0,'counter'),
+      toDoList$ : new ReduxBehaviorSubject<Array<any>>([],'toDoList'),
+      clock$ : new ReduxBehaviorSubject<object>(null,'clock'),
     };
  
   getStore(){
