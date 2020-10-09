@@ -1,7 +1,8 @@
 # redux-behavior-subject
 
-Create simple store with behavior subject and track changes
+Create simple store with behavior subject and track changes by demand
 with [Redux DevTools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en)
+for better performance only when you set to debug (set session storage see below ) it will start logging to chrome devtools
 
 ### Demo
 
