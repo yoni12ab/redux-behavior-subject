@@ -12,7 +12,7 @@ export class ReduxBehaviorSubject<T> {
 
   constructor(value: T, options: ReduxBehaviorSubjectOptions) {
     this.bs$ = new BehaviorSubject<T>(value);
-    this.options = { ...options, ...this.getDefaultOptions() };
+    this.options = { ...this.getDefaultOptions(), ...options };
   }
 
   public set(value?: T, action?: string) {
