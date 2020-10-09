@@ -32,7 +32,7 @@ export class StoreService {
 
   public users$ = new ReduxBehaviorSubject<User[]>([], { entityName: "Users" });
   public items$ = new ReduxBehaviorSubject<Item[]>([], { entityName: "Items" });
-  public counter$ = new ReduxBehaviorSubject<number>(0,{ entityName : 'counter'});
+  public counter$ = new ReduxBehaviorSubject<number>(0,{ entityName : "Counter"});
 
 }
 ```
