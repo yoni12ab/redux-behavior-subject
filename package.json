@@ -2,6 +2,10 @@
   "name": "redux-behavior-subject",
   "version": "2.0.1",
   "description": "",
+  "main": "build/index.js",
+  "files": [
+    "build/**/*"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,6 +22,6 @@
   "license": "MIT",
   "dependencies": {
     "rxjs": "^6.5.2",
-    "typescript": "^4.0.3"
+    "typescript": "^3.5.3"
   }
 }
