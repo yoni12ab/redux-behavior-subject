@@ -13,7 +13,7 @@ export class ReduxBehaviorSubject<T> {
     this.options = { ...this.getDefaultOptions(), ...options };
   }
 
-  public set(value?: T, action?: string) {
+  public set(value: T, action?: string) {
     const val = value && shallowCopy(value);
 
     if (this.options.isDevMode) {
