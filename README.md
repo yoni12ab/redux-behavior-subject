@@ -24,21 +24,15 @@ sessionStorage.setItem('RBS_SESSION_TOKEN_ENABLE_DEBUG', 'true');
 ```
 
 ```
-import { Injectable, isDevMode } from '@angular/core';
-import {ReduxBehaviorSubject as RBS} from 'redux-behavior-subject';
-
+import { Injectable } from '@angular/core';
+import {ReduxBehaviorSubject} from 'redux-behavior-subject';
+import {User, Item} from './models';
 @Injectable()
 export class StoreService {
 
-  private store = {
-      counter$ : new RBS<number>(0,{ entityName : 'counter'}),
-      toDoList$ : new RBS<Array<any>>([],{ entityName : 'toDoList'}),
-      clock$ : new RBS<object>(null,{ entityName : 'clock'}),
-    };
-
-  getStore(){
-    return this.store;
-  }
+  public users$ = new ReduxBehaviorSubject<User[]>([], { entityName: "Users" });
+  public items$ = new ReduxBehaviorSubject<Item[]>([], { entityName: "Items" });
+  public counter$ = new ReduxBehaviorSubject<number>(0,{ entityName : 'counter'});
 
 }
 ```
