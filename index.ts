@@ -2,8 +2,6 @@ import { BehaviorSubject, Observable } from "rxjs";
 import { ReduxBehaviorSubjectOptions } from "./models/redux-behavior-subject.model";
 import { reduxExtension } from "./redux-extension";
 import { callerNameByException, shallowCopy } from "./utils";
-import ts from "typescript/lib/tsserverlibrary";
-import Session = ts.server.Session;
 import { RBS_SESSION_TOKEN_ENABLE_DEBUG } from "./consts";
 
 export class ReduxBehaviorSubject<T> {
