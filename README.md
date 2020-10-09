@@ -46,6 +46,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 - package created to simplify the use of
   - use the redux chrome extension only when needed
-  - sallow clone the data when adding value
+  - shallow clone the data when adding value
   - add action to every data change
   - only in debug mode if not sending action it will try to get it from the call stack
