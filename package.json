@@ -21,7 +21,9 @@
   "author": "Yoni Argovi <yoni12ab@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "rxjs": "^6.5.2",
+    "rxjs": "^6.5.2"
+  },
+  "devDependencies": {
     "typescript": "^3.5.3"
   }
 }
