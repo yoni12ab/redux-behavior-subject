@@ -1,4 +1,4 @@
-export interface ReduxBehaviorSubjectOptions{
-    entityName: string;
-    isDevMode: boolean;
+export interface ReduxBehaviorSubjectOptions {
+  entityName: string;
+  isDevMode?: boolean;
 }

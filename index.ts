@@ -2,6 +2,9 @@ import { BehaviorSubject, Observable } from "rxjs";
 import { ReduxBehaviorSubjectOptions } from "./models/redux-behavior-subject.model";
 import { reduxExtension } from "./redux-extension";
 import { callerNameByException, shallowCopy } from "./utils";
+import ts from "typescript/lib/tsserverlibrary";
+import Session = ts.server.Session;
+import { RBS_SESSION_TOKEN_ENABLE_DEBUG } from "./consts";
 
 export class ReduxBehaviorSubject<T> {
   private bs$: BehaviorSubject<T>;
@@ -9,7 +12,7 @@ export class ReduxBehaviorSubject<T> {
 
   constructor(value: T, options: ReduxBehaviorSubjectOptions) {
     this.bs$ = new BehaviorSubject<T>(value);
-    this.options = options;
+    this.options = { ...options, ...this.getDefaultOptions() };
   }
 
   public set(value?: T, action?: string) {
@@ -29,5 +32,13 @@ export class ReduxBehaviorSubject<T> {
 
   public getValue(): T {
     return this.bs$.getValue();
+  }
+
+  private getDefaultOptions(): ReduxBehaviorSubjectOptions {
+    return {
+      entityName: Math.random().toString(36),
+      isDevMode:
+        sessionStorage.getItem(RBS_SESSION_TOKEN_ENABLE_DEBUG) === "true"
+    };
   }
 }
